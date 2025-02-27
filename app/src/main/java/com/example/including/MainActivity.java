@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 10000;
+            return 100;
         }
 
         @Override
@@ -78,6 +79,21 @@ public class MainActivity extends AppCompatActivity {
             LayoutInflater layoutInflater1;
             layoutInflater1 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View Lview = layoutInflater1.inflate(R.layout.new_,list,false);
+            LinearLayout l;
+
+            l = Lview.findViewById(R.id.l1);
+            l.setOnClickListener(view1 -> {
+                Toast.makeText(MainActivity.this, "Position Number is: "+position, Toast.LENGTH_SHORT).show();
+            });
+
+
+
+
+
+
+
+
+
             TextView txt = Lview.findViewById(R.id.txt);
             txt.setText(""+position);
 

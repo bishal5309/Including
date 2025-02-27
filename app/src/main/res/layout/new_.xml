@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="#AEB9FB"
+    android:padding="20dp"
     android:layout_height="wrap_content">
 
 
     <LinearLayout
+        android:id="@+id/l1"
         android:background="#D5FBA9"
-        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -31,14 +33,15 @@
                 android:layout_height="wrap_content"
                 android:text="Mizanur Rahman Bishal"
                 android:textSize="20sp"
-                android:textStyle="bold|italic"/>
+                android:textStyle="bold"/>
             <TextView
+               android:layout_margin="3dp"
                 android:id="@+id/txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="01326628058"
                 android:textSize="20sp"
-                android:textStyle="bold|italic"/>
+                android:textStyle="bold"/>
         </LinearLayout>
 
 
