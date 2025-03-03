@@ -18,13 +18,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout main;
-    AppCompatButton addbtn,removebtn;
+
 
     LayoutInflater layoutInflater;
     ListView list;
+
+    ArrayList < HashMap <String ,String> > arrayList = new ArrayList<>();
+
+    HashMap <String ,String> hashMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,31 +43,58 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        hashMap = new HashMap<>();
+        hashMap.put("name","Bishal");
+        hashMap.put("mobile","999");
+        arrayList.add(hashMap);
+        hashMap = new HashMap<>();
 
-        main = findViewById(R.id.main);
-        layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        hashMap.put("name","Mim");
+        hashMap.put("mobile","999");
+        arrayList.add(hashMap);
+        hashMap = new HashMap<>();
+
+        hashMap.put("name","Dim");
+        hashMap.put("mobile","999");
+        arrayList.add(hashMap);
+        hashMap = new HashMap<>();
+
+        hashMap.put("name","Anda");
+        hashMap.put("mobile","999");
+        arrayList.add(hashMap);
+        hashMap = new HashMap<>();
+
+        hashMap.put("name","Bishal");
+        hashMap.put("mobile","999");
+        arrayList.add(hashMap);
 
 
 
 
 
 
-        list = findViewById(R.id.list);
-        MyAdapter myAdapter = new MyAdapter();
-        list.setAdapter(myAdapter);
+
+
+     list = findViewById(R.id.list);
+
+     MyAdater myAdapter = new MyAdater();
+     list.setAdapter(myAdapter);
+
+
+
+
+
+
+
 
 
 
 
     }
-
-
-
-    private  class MyAdapter extends BaseAdapter{
-
+    private  class MyAdater extends BaseAdapter{
         @Override
         public int getCount() {
-            return 100;
+            return arrayList.size();
         }
 
         @Override
@@ -75,31 +108,38 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public View getView(int position, View view, ViewGroup viewGroup) {
+        public View getView(int i, View view, ViewGroup viewGroup) {
+
             LayoutInflater layoutInflater1;
             layoutInflater1 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View Lview = layoutInflater1.inflate(R.layout.new_,list,false);
-            LinearLayout l;
 
-            l = Lview.findViewById(R.id.l1);
-            l.setOnClickListener(view1 -> {
-                Toast.makeText(MainActivity.this, "Position Number is: "+position, Toast.LENGTH_SHORT).show();
+            View myView = layoutInflater1.inflate(R.layout.new_,list,false);
+
+            HashMap<String,String> hashMap = arrayList.get(i);
+
+            String name = hashMap.get("name");
+            String mobile = hashMap.get("mobile");
+
+            TextView nam = myView.findViewById(R.id.name);
+            nam.setText(name);
+
+            TextView txt = myView.findViewById(R.id.txt);
+            txt.append(mobile);
+
+            LinearLayout l1;
+
+            l1 = myView.findViewById(R.id.l1);
+
+            l1.setOnClickListener(view1 -> {
+                Toast.makeText(MainActivity.this, ""+name, Toast.LENGTH_SHORT).show();
             });
 
 
-
-
-
-
-
-
-
-            TextView txt = Lview.findViewById(R.id.txt);
-            txt.setText(""+position);
-
-
-
-            return Lview;
+            return myView;
         }
     }
+
+
+
+
 }
