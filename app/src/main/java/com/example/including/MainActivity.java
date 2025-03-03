@@ -2,10 +2,12 @@ package com.example.including;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,9 +30,11 @@ public class MainActivity extends AppCompatActivity {
     LayoutInflater layoutInflater;
     ListView list;
 
-    ArrayList < HashMap <String ,String> > arrayList = new ArrayList<>();
 
-    HashMap <String ,String> hashMap;
+    ArrayList<HashMap <String,String>> arrayList = new ArrayList<>();
+    HashMap <String,String> hashMap;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,29 +48,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         hashMap = new HashMap<>();
+        hashMap.put("image",String.valueOf(R.drawable.img_1));
         hashMap.put("name","Bishal");
         hashMap.put("mobile","999");
         arrayList.add(hashMap);
-        hashMap = new HashMap<>();
 
-        hashMap.put("name","Mim");
-        hashMap.put("mobile","999");
-        arrayList.add(hashMap);
-        hashMap = new HashMap<>();
 
-        hashMap.put("name","Dim");
-        hashMap.put("mobile","999");
-        arrayList.add(hashMap);
-        hashMap = new HashMap<>();
-
-        hashMap.put("name","Anda");
-        hashMap.put("mobile","999");
-        arrayList.add(hashMap);
-        hashMap = new HashMap<>();
-
-        hashMap.put("name","Bishal");
-        hashMap.put("mobile","999");
-        arrayList.add(hashMap);
 
 
 
@@ -114,24 +101,43 @@ public class MainActivity extends AppCompatActivity {
             layoutInflater1 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             View myView = layoutInflater1.inflate(R.layout.new_,list,false);
+            HashMap<String,String> hashMap1 = arrayList.get(i);
 
-            HashMap<String,String> hashMap = arrayList.get(i);
+            TextToSpeech textToSpeech;
 
-            String name = hashMap.get("name");
-            String mobile = hashMap.get("mobile");
+            textToSpeech = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener() {
+                @Override
+                public void onInit(int i) {
 
-            TextView nam = myView.findViewById(R.id.name);
-            nam.setText(name);
+                }
+            });
+
 
             TextView txt = myView.findViewById(R.id.txt);
-            txt.append(mobile);
+            txt.setText(hashMap1.get("name"));
+            txt.setOnClickListener(view1 -> {
+                textToSpeech.speak(txt.getText().toString().trim(),TextToSpeech.QUEUE_FLUSH ,null,null);
+            });
+
+
+            ImageView img = myView.findViewById(R.id.img);
+
+            img.setImageResource(Integer.parseInt(hashMap1.get("image")));
+
+            String name = hashMap1.get("name");
+            String image = hashMap1.get("image");
+
+
+
+
+
 
             LinearLayout l1;
 
             l1 = myView.findViewById(R.id.l1);
 
             l1.setOnClickListener(view1 -> {
-                Toast.makeText(MainActivity.this, ""+name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
             });
 
 
