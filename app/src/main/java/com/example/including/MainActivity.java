@@ -1,5 +1,6 @@
 package com.example.including;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -22,6 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -122,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
             ImageView img = myView.findViewById(R.id.img);
 
-            img.setImageResource(Integer.parseInt(hashMap1.get("image")));
+            img.setImageResource(Integer.parseInt(Objects.requireNonNull(hashMap1.get("image"))));
 
             String name = hashMap1.get("name");
             String image = hashMap1.get("image");
